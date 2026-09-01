@@ -22,6 +22,9 @@ const Header = () => {
                 <Link to="/joinForm" className='nav-link'>회원가입</Link>
                 <Link to="/loginForm" className='nav-link'>로그인</Link>
                 <Link to="/productlist" className='nav-link'>제품</Link>
+                <Link to="/productcreate" className='nav-link'>제품추가</Link>
+                <Link to="/ordercreate" className='nav-link'>주문추가</Link>
+
                 <Link to="/saveForm" className='nav-link'>글쓰기</Link>
                 
                 

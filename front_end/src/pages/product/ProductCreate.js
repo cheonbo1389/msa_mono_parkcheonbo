@@ -8,26 +8,84 @@ const ProductCreate = () => {
 
     const [product, setProduct ] = useState({
         name : '',
+        // category: '',
         price : '',
         stockQuantity : ''
     })
 
+    const changeValue = (e) => {
+        setProduct({
+            ...product,
+            [e.target.name] : e.target.value
+        });
+    }
+
+    const submitProduct = (e) =>{
+        e.preventDefault();
+        const token = localStorage.getItem("Token");
+        console.log(product);
+        
+        
+        fetch("http://localhost:8081/product/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(product)
+        })
+        .then((res) => {
+            if (res.status === 201) {
+                return res.json();
+            } else {
+                throw new Error(`상품 등록 실패: ${res.status}`);
+            }
+        })
+        .then((productId) => {
+            console.log("등록된 상품 ID:", productId);
+
+            navigate("/productlist");
+        })
+        .catch((error) => {
+            console.error("실패:", error);
+            alert("제품 추가에 실패했습니다.");
+        });
+    }
+
 
     return (
         <div>
-            
+            <Container>
+                <br />
+                <h3>새로운 제품 추가</h3>
+                <Form onSubmit={submitProduct}>
+                <Form.Group className="mb-3" controlId="ProductName">
+                    <Form.Label>제품명</Form.Label>
+                    <Form.Control type="text" placeholder="새로운 제품명 입력" onChange={changeValue} name="name"/>
+                </Form.Group>
+{/* 
+                <Form.Group className="mb-3" controlId="ProductCategory">
+                    <Form.Label>제품 카테고리</Form.Label>
+                    <Form.Control type="text" placeholder="제품 카테고리 입력" onChange={changeValue} name="category"/>
+                </Form.Group> */}
+
+                <Form.Group className="mb-3" controlId="ProductPrice">
+                    <Form.Label>제품 개당 가격</Form.Label>
+                    <Form.Control type="number" placeholder="제품 개당 가격 입력" onChange={changeValue} name="price"/>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="ProductstockQuantity">
+                    <Form.Label>제품 수량</Form.Label>
+                    <Form.Control type="number" placeholder="제품 수량 입력" onChange={changeValue} name="stockQuantity" />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+                </Form>
+            </Container>
         </div>
     );
 };
 
 export default ProductCreate;
-
-/*
-백엔드로 보내야하는 내용
-
-name
-price
-stockQuantity
-token
-
-*/

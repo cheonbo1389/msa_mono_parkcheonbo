@@ -39,6 +39,13 @@ public class ProductService {
     }
 
     //제품 전체 조회
+    public Product productDeatail(Long id){
+        System.out.println("<<< ProductService - productDeatail >>>");
+
+        return productRepository.findById(id).get();
+    }
+
+    //제품 전체 조회
     public ArrayList<Product> productAllList(){
         System.out.println("<<< ProductService - productAllList >>>");
 

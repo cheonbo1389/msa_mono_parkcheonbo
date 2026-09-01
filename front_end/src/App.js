@@ -9,6 +9,7 @@ import BoardUpdateForm from './pages/board/BoardUpdateForm';
 import BoardWriteForm from './pages/board/BoardWriteForm';
 import ProductList from './pages/product/ProductList';
 import ProductCreate from './pages/product/ProductCreate';
+import OrderCreate from './pages/order/OrderCreate';
 
 function App() {
   return (
@@ -31,8 +32,8 @@ function App() {
           {/* 제품 추가 */}
           <Route path='/productcreate' exact={true} element={<ProductCreate />} /> 
 
-
-
+          {/* 주문 추가 */}
+          <Route path='/ordercreate/:id' exact={true} element={<OrderCreate />} />
 
 
 
