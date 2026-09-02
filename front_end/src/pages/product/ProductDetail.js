@@ -46,10 +46,7 @@ const ProductDetail = () => {
                     <Card.Title>판매자 : {member.name}</Card.Title>
                     <Button variant="warning" onClick={updateProduct}>수정</Button>
                     <Button variant="danger" onClick={updateProduct}>삭제</Button>
-                    
 
-                    {/* <Link to={"/product/"+id} className="btn btn-primary">상세보기</Link>
-                    <Link to={"/ordercreate/"+id} className="btn btn-primary">주문하기</Link> */}
                 </Card.Body>
             </Card>
         </div>

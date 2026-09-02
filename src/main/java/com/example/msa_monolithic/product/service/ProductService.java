@@ -29,7 +29,6 @@ public class ProductService {
     public Product productCreate(ProductRegisterDto dto){
         System.out.println("<<< ProductService - productCreate >>>");
 
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Member member = memberRepository.findById(Long.parseLong(authentication.getName()))
                 .orElseThrow(() -> new EntityNotFoundException("member is not found"));
@@ -50,5 +49,18 @@ public class ProductService {
         System.out.println("<<< ProductService - productAllList >>>");
 
         return (ArrayList<Product>) productRepository.findAll();
+    }
+
+
+    //제품 수정
+    public Product productUpdate(ProductRegisterDto dto){
+        System.out.println("<<< ProductService - productUpdate >>>");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Member member = memberRepository.findById(Long.parseLong(authentication.getName()))
+                .orElseThrow(() -> new EntityNotFoundException("member is not found"));
+
+        Product product = productRepository.save(dto.toEntity(member));
+        return product;
     }
 }

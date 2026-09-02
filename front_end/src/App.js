@@ -13,6 +13,8 @@ import OrderCreate from './pages/order/OrderCreate';
 import OrderList from './pages/order/OrderList';
 import Mypage from './pages/user/Mypage';
 import ProductDetail from './pages/product/ProductDetail';
+import ProductUpdate from './pages/product/ProductUpdate';
+
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
 
           {/* 제품 상세 페이지*/}
           <Route path='/product/:id' exact={true} element={<ProductDetail />} /> 
+
+          {/* 제품 상세 페이지*/}
+          <Route path='/product/:id' exact={true} element={<ProductDetail />} /> 
+
+          {/* 제품 수정 페이지 */}
+          <Route path='/updateProduct/:id' exact={true} element={<ProductUpdate />} />
 
           {/* 주문 추가 */}
           <Route path='/ordercreate/:id' exact={true} element={<OrderCreate />} />

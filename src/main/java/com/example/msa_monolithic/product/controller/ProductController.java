@@ -21,7 +21,6 @@ public class ProductController {
     @PostMapping("/create")
     public ResponseEntity<?> productCreate(@RequestBody ProductRegisterDto dto){
         System.out.println("<<< ProductController - /create >>>");
-        System.out.println(dto.getName()+"/"+dto.getPrice()+"/"+dto.getStockQuantity());
 
         Product product = productService.productCreate(dto);
         return new ResponseEntity<>(product.getId(), HttpStatus.CREATED);
@@ -41,5 +40,15 @@ public class ProductController {
         System.out.println("<<< ProductController - /list >>>");
 
         return new ResponseEntity<>(productService.productAllList(),HttpStatus.OK);
+    }
+
+
+    //제품 수정
+    @PostMapping("/update/{id}")
+    public ResponseEntity<?> productUpdate(@RequestBody ProductRegisterDto dto){
+        System.out.println("<<< ProductController - /update >>>");
+
+        Product product = productService.productUpdate(dto);
+        return new ResponseEntity<>(product.getId(), HttpStatus.OK);
     }
 }
