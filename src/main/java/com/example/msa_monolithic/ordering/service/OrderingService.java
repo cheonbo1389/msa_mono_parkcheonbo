@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 @Transactional
 public class OrderingService {
@@ -50,7 +52,16 @@ public class OrderingService {
                 .build();
 
         orderingRepository.save(ordering);
-
         return ordering;
+    }
+
+    //유저 본인이 주문한 목록 리스트 조회
+    public ArrayList<Ordering> orderList (){
+        System.out.println("<<< OrderingService - orderList >>>");
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+        Member member =memberRepository.findById(Long.parseLong(id))
+                .orElseThrow(() -> new EntityNotFoundException("member is not found"));
+
+        return orderingRepository.findByMember(member);
     }
 }

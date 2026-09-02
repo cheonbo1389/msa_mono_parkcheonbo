@@ -10,6 +10,9 @@ import BoardWriteForm from './pages/board/BoardWriteForm';
 import ProductList from './pages/product/ProductList';
 import ProductCreate from './pages/product/ProductCreate';
 import OrderCreate from './pages/order/OrderCreate';
+import OrderList from './pages/order/OrderList';
+import Mypage from './pages/user/Mypage';
+import ProductDetail from './pages/product/ProductDetail';
 
 function App() {
   return (
@@ -32,9 +35,17 @@ function App() {
           {/* 제품 추가 */}
           <Route path='/productcreate' exact={true} element={<ProductCreate />} /> 
 
+          {/* 제품 상세 페이지*/}
+          <Route path='/product/:id' exact={true} element={<ProductDetail />} /> 
+
           {/* 주문 추가 */}
           <Route path='/ordercreate/:id' exact={true} element={<OrderCreate />} />
 
+          {/* 주문 목록 */}
+          <Route path='/orderList' exact={true} element={<OrderList />} /> 
+          
+          {/* 마이페이지 - 내 정보 */}
+          <Route path='/mypage' exact={true} element={<Mypage />} /> 
 
 
 

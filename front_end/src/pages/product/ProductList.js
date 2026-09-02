@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import ProductItem from '../../components/ProductItem';
 
 const ProductList = () => {
-const token = localStorage.getItem("Token");
+    const token = localStorage.getItem("Token");
     console.log(token);
     
     const [productList, setProductList] = useState([]);
@@ -27,9 +27,7 @@ const token = localStorage.getItem("Token");
                 <br />
                 {productList.map(product => 
                     <ProductItem key={product.id} product={product} /> )
-                
                 }
-                
             </Container>
         </div>
     );

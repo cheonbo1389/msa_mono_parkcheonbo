@@ -5,10 +5,9 @@ import com.example.msa_monolithic.ordering.dto.OrderCreateDto;
 import com.example.msa_monolithic.ordering.service.OrderingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/ordering")
@@ -27,5 +26,16 @@ public class OrderingController {
         Ordering ordering = orderingService.orderCreate(dtos);
 
         return new ResponseEntity<>(ordering.getId(), HttpStatus.CREATED);
+    }
+
+
+    //유저 본인이 주문한 목록 리스트 조회
+    @GetMapping("/orderingList")
+    public ResponseEntity<?> orderingList(){
+        System.out.println("<<< OrderingController - /orderingList >>>");
+
+        ArrayList<Ordering> orderingList =  orderingService.orderList();
+
+        return new ResponseEntity<>(orderingList, HttpStatus.OK);
     }
 }

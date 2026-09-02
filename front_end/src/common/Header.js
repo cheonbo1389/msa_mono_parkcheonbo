@@ -24,13 +24,15 @@ const Header = () => {
                 <Link to="/productlist" className='nav-link'>제품</Link>
                 <Link to="/productcreate" className='nav-link'>제품추가</Link>
                 <Link to="/ordercreate" className='nav-link'>주문추가</Link>
+                <Link to="/orderList" className='nav-link'>주문목록</Link>
+
 
                 <Link to="/saveForm" className='nav-link'>글쓰기</Link>
                 
                 
                 {/* <Nav.Link href="#action2">Link</Nav.Link> */}
                 <NavDropdown title="마이페이지" id="navbarScrollingDropdown">
-                    <NavDropdown.Item href="#">장바구니</NavDropdown.Item>
+                    <NavDropdown.Item href="/mypage">내 정보</NavDropdown.Item>
                     <NavDropdown.Item href="#">구매</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#">환불</NavDropdown.Item>

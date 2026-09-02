@@ -5,6 +5,9 @@ import com.example.msa_monolithic.member.domain.Member;
 import com.example.msa_monolithic.member.dto.LoginDto;
 import com.example.msa_monolithic.member.dto.MemberSaveReqDto;
 import com.example.msa_monolithic.member.repository.MemberRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,5 +63,18 @@ public class MemberService {
             throw new IllegalArgumentException("email 또는 비밀번호가 일치하지 않습니다.");
         }
         return optionalMember.get();
+    }
+
+
+    //마이페이지 - 내정보 조회
+    public Member myinfo(){
+        System.out.println("<<< MemberService - myinfo >>>");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Member member = memberRepository.findById(Long.parseLong(authentication.getName()))
+                .orElseThrow(() -> new EntityNotFoundException("member is not found"));
+
+
+        return member;
     }
 }

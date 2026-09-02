@@ -38,7 +38,7 @@ public class ProductService {
         return product;
     }
 
-    //제품 전체 조회
+    //제품 상세 조회
     public Product productDeatail(Long id){
         System.out.println("<<< ProductService - productDeatail >>>");
 

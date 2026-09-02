@@ -6,11 +6,12 @@ const OrderCreate = () => {
     const propsParam = useParams(); 
     const navigate = useNavigate(); 
 
-
+    const [seller, setSeller] = useState('');
     const [product, setProduct ] = useState({
         name : '',
         price : '',
-        stockQuantity : ''
+        stockQuantity : '',
+        
     })
 
 
@@ -26,14 +27,13 @@ const OrderCreate = () => {
         });
     }
 
-
-
     useEffect(() => {
             fetch("http://localhost:8081/product/detail/"+order.productId)
 
             .then((res) => res.json())
             .then((res) => {
                 setProduct(res);
+                setSeller(res.member.name);
             })
     }, []);
 
@@ -77,6 +77,11 @@ const OrderCreate = () => {
                     <Form.Group className="mb-3" controlId="ProductName">
                         <Form.Label>제품명 : {product.name}</Form.Label>
                     </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="ProductSeller">
+                        <Form.Label>판매자 : {seller}</Form.Label>
+                    </Form.Group>
+
                     <Form.Group className="mb-3" controlId="ProductPrice">
                         <Form.Label>개당 가격 : {product.price} </Form.Label>
                     </Form.Group>

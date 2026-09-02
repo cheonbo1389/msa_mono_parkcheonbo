@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +27,6 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtTokenProvider jwtTokenProvider;
 
-//    @Qualifier?
-//    같은 타입의 빈(Bean)이 여러 개 있을 때,
-//    스프링이 어떤 빈을 주입해야 할지 명확히 선택하도록 이름을 지정
     @Qualifier("rtdb")
     private final RedisTemplate<String, Object> redisTemplate;
 
@@ -45,6 +39,7 @@ public class MemberController {
         this.redisTemplate = redisTemplate;
     }
 
+    //회원가입
     @PostMapping("/create")
     public ResponseEntity<?> memberCreate(@RequestBody MemberSaveReqDto memberSaveReqDto){
         System.out.println("<<< MemberController - /create >>>");
@@ -53,21 +48,19 @@ public class MemberController {
         return new ResponseEntity<>(memberId, HttpStatus.CREATED);
     }
 
+    //로그인
     @PostMapping("/doLogin")
     public ResponseEntity<?> doLogin(@RequestBody LoginDto dto){
         System.out.println("<<< MemberController - /doLogin >>>");
 
-        //        email,password 검증
+        //email,password 검증
         Member member = memberService.login(dto);
 
-//        토큰 생성 및 return
         String token = jwtTokenProvider.createToken(member.getId().toString(), member.getRole().toString());
         String refreshToken = jwtTokenProvider.createRefreshToken(member.getEmail(), member.getRole().toString());
 
-//        redis에 rt 저장
         redisTemplate.opsForValue().set(member.getEmail(), refreshToken, 200, TimeUnit.DAYS);
 
-//        사용자에게 at, rt 지급
         Map<String, Object> loginInfo = new HashMap<>();
         loginInfo.put("id", member.getId());
         loginInfo.put("token", token);
@@ -76,6 +69,13 @@ public class MemberController {
         return new ResponseEntity<>(loginInfo, HttpStatus.OK);
     }
 
+
+    @GetMapping("/mypage")
+    public ResponseEntity<?> mypage_myinfo(){
+        System.out.println("<<< MemberController - /mypage_myinfo >>>");
+
+        return new ResponseEntity<>(memberService.myinfo(), HttpStatus.OK);
+    }
 
     @PostMapping("/refresh-token")
     public ResponseEntity<?> generateNewAt(@RequestBody MemberRefreshDto dto){
