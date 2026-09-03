@@ -14,14 +14,24 @@ import OrderList from './pages/order/OrderList';
 import Mypage from './pages/user/Mypage';
 import ProductDetail from './pages/product/ProductDetail';
 import ProductUpdate from './pages/product/ProductUpdate';
+import MyProductList from './pages/product/MyProductList';
+import UpdateMyinfo from './pages/user/UpdateMyinfo';
 
 
 function App() {
+  const token = localStorage.getItem("Token");
+
+
   return (
+    
     <div className="App">
+
       <BrowserRouter>
         <Header />
+
         <Routes>
+
+          {/* user */}
           {/* home화면 ProductList로 이동 */} 
           <Route path='/home' exact={true} element={<ProductList />} /> 
 
@@ -31,6 +41,14 @@ function App() {
           {/* 로그인 */} 
           <Route path='/loginForm' exact={true} element={<LoginForm />} /> 
 
+          {/* 마이페이지 - 내 정보 */}
+          <Route path='/mypage' exact={true} element={<Mypage />} /> 
+
+          {/* 내정보 수정 페이지 */}
+          <Route path='/updatemyinfo' exact={true} element={<UpdateMyinfo />} /> 
+
+
+          {/* product */}
           {/* 제품 리스트 */}
           <Route path='/productlist' exact={true} element={<ProductList />} /> 
 
@@ -40,20 +58,21 @@ function App() {
           {/* 제품 상세 페이지*/}
           <Route path='/product/:id' exact={true} element={<ProductDetail />} /> 
 
-          {/* 제품 상세 페이지*/}
-          <Route path='/product/:id' exact={true} element={<ProductDetail />} /> 
-
           {/* 제품 수정 페이지 */}
           <Route path='/updateProduct/:id' exact={true} element={<ProductUpdate />} />
 
+          {/* 내가 추가한 제품 페이지 */}
+          <Route path='/myproductlist' exact={true} element={<MyProductList />} /> 
+
+
+          {/* order */}
           {/* 주문 추가 */}
           <Route path='/ordercreate/:id' exact={true} element={<OrderCreate />} />
 
           {/* 주문 목록 */}
           <Route path='/orderList' exact={true} element={<OrderList />} /> 
           
-          {/* 마이페이지 - 내 정보 */}
-          <Route path='/mypage' exact={true} element={<Mypage />} /> 
+
 
 
 

@@ -7,6 +7,8 @@ const Mypage = () => {
     const token = localStorage.getItem("Token");
     console.log(token);
 
+    const navigate = useNavigate();
+
     const [myinfo, setMyinfo] = useState({
             name : '',
             email : ''
@@ -29,15 +31,25 @@ const Mypage = () => {
     }, [])
 
 
+    const updateMyinfo = () => {
+      navigate('/updatemyinfo');
+    }
+
     return (
-        <div>
-            <Card>
-                <Card.Body>               
-                    <Card.Title>이름 : {myinfo.name}</Card.Title>
-                    <Card.Title>이메일 : {myinfo.email}</Card.Title>
-                </Card.Body>
-            </Card>
-        </div>
+        <Container>
+            <div>
+                <br />
+                <h3>내 정보</h3>
+                <br />
+                <Card>
+                    <Card.Body>               
+                        <Card.Title>이름 : {myinfo.name}</Card.Title>
+                        <Card.Title>이메일 : {myinfo.email}</Card.Title>
+                        <Button variant="primary" onClick={updateMyinfo}>수정</Button>  
+                    </Card.Body>
+                </Card>
+            </div>
+        </Container>
     );
 };
 

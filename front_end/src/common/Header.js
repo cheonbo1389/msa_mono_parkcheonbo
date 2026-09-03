@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <div>
-        {/* <Navbar expand="lg" className="bg-body-tertiary"> */}
         <Navbar bg="dark" variant="dark">
         <Container fluid>
-            <Navbar.Brand href="#">로고</Navbar.Brand>
+            <Navbar.Brand href="/home">로고</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -17,38 +16,26 @@ const Header = () => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
             >
-                {/* <Nav.Link href="#action1">Home</Nav.Link> */}
                 <Link to="/home" className='nav-link'>Home</Link>
-                <Link to="/joinForm" className='nav-link'>회원가입</Link>
+                {/* <Link to="/joinForm" className='nav-link'>회원가입</Link>
                 <Link to="/loginForm" className='nav-link'>로그인</Link>
-                <Link to="/productlist" className='nav-link'>제품</Link>
-                <Link to="/productcreate" className='nav-link'>제품추가</Link>
-                <Link to="/ordercreate" className='nav-link'>주문추가</Link>
-                <Link to="/orderList" className='nav-link'>주문목록</Link>
+                <Link to="/productlist" className='nav-link'>제품목록</Link> */}
+                {/* <Link to="/productcreate" className='nav-link'>제품추가</Link> */}
+                {/* <Link to="/ordercreate" className='nav-link'>주문추가</Link> */}
+                {/* <Link to="/orderList" className='nav-link'>주문목록</Link> */}
 
-
-                <Link to="/saveForm" className='nav-link'>글쓰기</Link>
-                
-                
-                {/* <Nav.Link href="#action2">Link</Nav.Link> */}
                 <NavDropdown title="마이페이지" id="navbarScrollingDropdown">
                     <NavDropdown.Item href="/mypage">내 정보</NavDropdown.Item>
-                    <NavDropdown.Item href="#">구매</NavDropdown.Item>
+                    <NavDropdown.Item href="/myproductlist">내 제품</NavDropdown.Item>
+                    <NavDropdown.Item href="/orderList">주문목록</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#">환불</NavDropdown.Item>
+                    <NavDropdown.Item href="/productcreate">제품 추가</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#" disabled>
-                Link
-                </Nav.Link>
             </Nav>
             <Form className="d-flex">
-                <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success" href="/loginForm">로그인</Button>
+                <Button variant="outline-primary" href="/joinForm">회원가입</Button>
+                {/* <Button variant="outline-warning">로그아웃</Button> */}
             </Form>
             </Navbar.Collapse>
         </Container>

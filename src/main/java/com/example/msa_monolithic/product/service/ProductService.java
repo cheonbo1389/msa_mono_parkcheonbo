@@ -25,7 +25,7 @@ public class ProductService {
         this.memberRepository = memberRepository;
     }
 
-    //제품 등록
+    //제품 등록 + 수정
     public Product productCreate(ProductRegisterDto dto){
         System.out.println("<<< ProductService - productCreate >>>");
 
@@ -53,14 +53,21 @@ public class ProductService {
 
 
     //제품 수정
-    public Product productUpdate(ProductRegisterDto dto){
+    public Product productUpdate(Product dto){
         System.out.println("<<< ProductService - productUpdate >>>");
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Member member = memberRepository.findById(Long.parseLong(authentication.getName()))
+        return productRepository.save(dto);
+    }
+
+
+    //내가 추가한 제품 조회
+    public ArrayList<Product> myproductList(){
+        System.out.println("<<< ProductService - myproductList >>>");
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+        Member member =memberRepository.findById(Long.parseLong(id))
                 .orElseThrow(() -> new EntityNotFoundException("member is not found"));
 
-        Product product = productRepository.save(dto.toEntity(member));
-        return product;
+        return productRepository.findByMember(member);
     }
+
 }

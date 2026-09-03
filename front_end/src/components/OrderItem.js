@@ -19,6 +19,7 @@ const OrderItem = (props) => {
                     <Card.Title>주문 금액 : {price}</Card.Title>
                 </Card.Body>
             </Card>
+            <br />
         </div>
     );
 };

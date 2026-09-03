@@ -77,4 +77,12 @@ public class MemberService {
 
         return member;
     }
+
+
+    //마이페이지 - 내정보 업데이트
+    public Member updatemyinfo(Member member){
+        System.out.println("<<< MemberService - updatemyinfo >>>");
+
+        return memberRepository.save(member);
+    }
 }

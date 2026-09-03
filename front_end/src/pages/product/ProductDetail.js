@@ -30,25 +30,35 @@ const ProductDetail = () => {
         });
     }, [])
 
-    //수정페이지
-    const updateProduct = () => {
-        navigate('/updateProduct/'+productList.id);
+    //주문페이지로
+    const createOrder = () => {
+        navigate("/ordercreate/"+productList.id);
     }
 
+    //이전 페이지로
+    const backpage = () => {
+        navigate(-1);
+    }
+
+    
     return (
         <div>
-            <Card>
-                <Card.Body>               
-                    <Card.Title>제품번호 : {productList.id}</Card.Title>
-                    <Card.Title>제품명 : {productList.name}</Card.Title>
-                    <Card.Title>제품가격 : {productList.price}</Card.Title>
-                    <Card.Title>제품재고 : {productList.stockQuantity}</Card.Title>
-                    <Card.Title>판매자 : {member.name}</Card.Title>
-                    <Button variant="warning" onClick={updateProduct}>수정</Button>
-                    <Button variant="danger" onClick={updateProduct}>삭제</Button>
+            <Container>
+                <br />
+                <h3>{productList.name}의 상세 내용</h3>
+                <Card>
+                    <Card.Body>               
+                        <Card.Title>제품번호 : {productList.id}</Card.Title>
+                        <Card.Title>제품명 : {productList.name}</Card.Title>
+                        <Card.Title>제품가격 : {productList.price}</Card.Title>
+                        <Card.Title>제품재고 : {productList.stockQuantity}</Card.Title>
+                        <Card.Title>판매자 : {member.name}</Card.Title>
+                        <Button variant="warning" onClick={backpage}>이전페이지로</Button>
+                        <Button variant="primary" onClick={createOrder}>주문하기</Button>
 
-                </Card.Body>
-            </Card>
+                    </Card.Body>
+                </Card>
+            </Container>
         </div>
     );
 };

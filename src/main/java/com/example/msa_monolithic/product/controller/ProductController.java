@@ -44,11 +44,21 @@ public class ProductController {
 
 
     //제품 수정
-    @PostMapping("/update/{id}")
-    public ResponseEntity<?> productUpdate(@RequestBody ProductRegisterDto dto){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> productUpdate(@RequestBody Product dto){
         System.out.println("<<< ProductController - /update >>>");
 
         Product product = productService.productUpdate(dto);
         return new ResponseEntity<>(product.getId(), HttpStatus.OK);
     }
+
+
+    //내가 추가한 제품 조회
+    @GetMapping("/mylist")
+    public ResponseEntity<?> myproductList(){
+        System.out.println("<<< ProductController - /mylist >>>");
+
+        return new ResponseEntity<>(productService.myproductList(),HttpStatus.OK);
+    }
+
 }

@@ -17,11 +17,12 @@ const ProductItem = (props) => {
                     <Card.Title>제품번호 : {id}</Card.Title>
                     <Card.Title>제품명 : {name}</Card.Title>
                     <Card.Title>제품가격 : {price}</Card.Title>
-                    <Card.Title>제품갯수 : {stockQuantity}</Card.Title>
+                    {/* <Card.Title>재고 : {stockQuantity}</Card.Title> */}
                     <Link to={"/product/"+id} className="btn btn-primary">상세보기</Link>
                     <Link to={"/ordercreate/"+id} className="btn btn-primary">주문하기</Link>
                 </Card.Body>
             </Card>
+            <br />
         </div>
     );
 };

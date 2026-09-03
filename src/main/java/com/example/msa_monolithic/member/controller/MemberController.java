@@ -69,13 +69,22 @@ public class MemberController {
         return new ResponseEntity<>(loginInfo, HttpStatus.OK);
     }
 
-
+    //마이페이지
     @GetMapping("/mypage")
     public ResponseEntity<?> mypage_myinfo(){
         System.out.println("<<< MemberController - /mypage_myinfo >>>");
 
         return new ResponseEntity<>(memberService.myinfo(), HttpStatus.OK);
     }
+
+
+    @PutMapping("/updatemyinfo")
+    public ResponseEntity<?> updateMyinfo(@RequestBody Member member) {
+        System.out.println("<<< MemberController - /updateMyinfo >>>");
+
+        return new ResponseEntity<>(memberService.updatemyinfo(member), HttpStatus.OK);
+    }
+
 
     @PostMapping("/refresh-token")
     public ResponseEntity<?> generateNewAt(@RequestBody MemberRefreshDto dto){
