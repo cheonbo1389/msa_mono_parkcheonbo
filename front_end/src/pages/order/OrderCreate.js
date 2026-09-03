@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
-import { Button, Container, Form} from 'react-bootstrap';
+import { Button, Container, Form, Card} from 'react-bootstrap';
 
 const OrderCreate = () => {
     const propsParam = useParams(); 
@@ -74,20 +74,26 @@ const OrderCreate = () => {
                 <br />
                 <h3>제품 주문</h3>
                 <Form onSubmit={submitOrder}>
-                    <Form.Group className="mb-3" controlId="ProductName">
-                        <Form.Label>제품명 : {product.name}</Form.Label>
-                    </Form.Group>
+                    <Card>
+                        <Container>
+                            <br />
+                            <Form.Group className="mb-3" controlId="ProductName">
+                                <Form.Label>제품명 : {product.name}</Form.Label>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="ProductSeller">
-                        <Form.Label>판매자 : {seller}</Form.Label>
-                    </Form.Group>
+                            <Form.Group className="mb-3" controlId="ProductSeller">
+                                <Form.Label>판매자 : {seller}</Form.Label>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="ProductPrice">
-                        <Form.Label>개당 가격 : {product.price} </Form.Label>
-                    </Form.Group>
-
+                            <Form.Group className="mb-3" controlId="ProductPrice">
+                                <Form.Label>개당 가격 : {product.price} </Form.Label>
+                            </Form.Group>
+                        </Container>
+                    </Card>
+                            
+                    <br />
                     <Form.Group className="mb-3" controlId="ProductCount">
-                        <Form.Label>구매할 제품 수량</Form.Label>
+                        <Form.Label><h3>구매할 제품 수량</h3></Form.Label>
                         <Form.Control type="number" placeholder="구매할 제품 수량 입력" onChange={changeValue} name="productCount" />
                     </Form.Group>
                     <Button variant="primary" type="submit">

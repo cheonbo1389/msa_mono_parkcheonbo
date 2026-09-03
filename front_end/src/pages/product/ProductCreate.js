@@ -80,7 +80,7 @@ const ProductCreate = () => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Submit
+                    추가
                 </Button>
                 </Form>
             </Container>
