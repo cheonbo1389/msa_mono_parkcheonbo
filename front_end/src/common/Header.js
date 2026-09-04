@@ -19,12 +19,6 @@ const Header = () => {
                 navbarScroll
             >
                 <Link to="/home" className='nav-link'>Home</Link>
-                {/* <Link to="/joinForm" className='nav-link'>회원가입</Link>
-                <Link to="/loginForm" className='nav-link'>로그인</Link>
-                <Link to="/productlist" className='nav-link'>제품목록</Link> */}
-                {/* <Link to="/productcreate" className='nav-link'>제품추가</Link> */}
-                {/* <Link to="/ordercreate" className='nav-link'>주문추가</Link> */}
-                {/* <Link to="/orderList" className='nav-link'>주문목록</Link> */}
 
                 <NavDropdown title="마이페이지" id="navbarScrollingDropdown">
                     <NavDropdown.Item href="/mypage">내 정보</NavDropdown.Item>
@@ -35,10 +29,13 @@ const Header = () => {
                 </NavDropdown>
             </Nav>
             <Form className="d-flex">
+                {/* 로그인 안 되어있을 경우 */}
                 {!token && (<>
                     <Button variant="outline-success" className="me-3" href="/loginForm">로그인</Button>
                     <Button variant="outline-primary" href="/joinForm">회원가입</Button>
                 </>)}
+
+                {/* 로그인 되어있을 경우 */}
                 {token && (<><Button variant="outline-warning" href="/logout">로그아웃</Button></>)}
                 
             </Form>

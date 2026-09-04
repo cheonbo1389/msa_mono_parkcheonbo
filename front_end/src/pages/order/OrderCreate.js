@@ -57,7 +57,7 @@ const OrderCreate = () => {
             }
         })
         .then((orderId) => {
-            console.log("등록된 주문 ID:", orderId);
+            alert("주문에 성공했습니다.");
 
             navigate("/productlist");
         })

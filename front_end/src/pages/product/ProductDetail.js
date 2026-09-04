@@ -18,7 +18,6 @@ const ProductDetail = () => {
             method: "GET" ,
             headers: {
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${token}`
             }
         }) 
         .then(res => res.json())
@@ -29,7 +28,7 @@ const ProductDetail = () => {
         });
     }, [])
 
-    //주문페이지로
+
     const createOrder = () => {
         navigate("/ordercreate/"+productList.id);
     }

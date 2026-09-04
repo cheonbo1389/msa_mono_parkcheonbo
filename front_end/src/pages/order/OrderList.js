@@ -5,10 +5,7 @@ import OrderItem from '../../components/OrderItem';
 
 const OrderList = () => {
     const token = localStorage.getItem("Token");
-    console.log(token);
-
     const [orderList, setOrderList] = useState([]);
-
 
     useEffect(() => {
         fetch("http://localhost:8081/ordering/orderingList",{
@@ -20,7 +17,6 @@ const OrderList = () => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setOrderList(res); 
         });
     }, [])
@@ -34,7 +30,6 @@ const OrderList = () => {
                 {orderList.map(order => 
                     <OrderItem key={order.id} order={order} /> )
                 }
-                
             </Container>
         </div>
     );

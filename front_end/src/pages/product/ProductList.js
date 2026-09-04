@@ -3,9 +3,6 @@ import { Container } from 'react-bootstrap';
 import ProductItem from '../../components/ProductItem';
 
 const ProductList = () => {
-    const token = localStorage.getItem("Token");
-    console.log(token);
-    
     const [productList, setProductList] = useState([]);
 
     useEffect(() => {
@@ -14,7 +11,6 @@ const ProductList = () => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setProductList(res); 
         });
     }, [])

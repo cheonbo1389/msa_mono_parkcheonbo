@@ -8,7 +8,6 @@ const ProductCreate = () => {
 
     const [product, setProduct ] = useState({
         name : '',
-        // category: '',
         price : '',
         stockQuantity : ''
     })
@@ -23,8 +22,6 @@ const ProductCreate = () => {
     const submitProduct = (e) =>{
         e.preventDefault();
         const token = localStorage.getItem("Token");
-        console.log(product);
-        
         
         fetch("http://localhost:8081/product/create", {
             method: "POST",
@@ -42,8 +39,7 @@ const ProductCreate = () => {
             }
         })
         .then((productId) => {
-            console.log("등록된 상품 ID:", productId);
-
+            alert("제품 추가 성공했습니다.");
             navigate("/productlist");
         })
         .catch((error) => {
@@ -63,11 +59,6 @@ const ProductCreate = () => {
                     <Form.Label>제품명</Form.Label>
                     <Form.Control type="text" placeholder="새로운 제품명 입력" onChange={changeValue} name="name"/>
                 </Form.Group>
-{/* 
-                <Form.Group className="mb-3" controlId="ProductCategory">
-                    <Form.Label>제품 카테고리</Form.Label>
-                    <Form.Control type="text" placeholder="제품 카테고리 입력" onChange={changeValue} name="category"/>
-                </Form.Group> */}
 
                 <Form.Group className="mb-3" controlId="ProductPrice">
                     <Form.Label>제품 개당 가격</Form.Label>

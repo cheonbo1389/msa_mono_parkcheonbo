@@ -9,5 +9,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    //유저가 추가한 제품 조회
     ArrayList<Product> findByMember(Member member);
 }

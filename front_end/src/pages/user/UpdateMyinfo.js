@@ -5,7 +5,6 @@ import {  useNavigate } from 'react-router-dom';
 
 const UpdateMyinfo = () => {
     const token = localStorage.getItem("Token");
-    console.log(token);
 
     const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ const UpdateMyinfo = () => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setMyinfo(res); 
         });
     }, [])
@@ -47,7 +45,6 @@ const UpdateMyinfo = () => {
             body: JSON.stringify(myinfo) 
         })
         .then((res) => { 
-            console.log(1, res);
             if(res.status === 200){
                 return res.json();
             }else{

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 
 const OrderItem = (props) => {
-//  주문번호, 주문한 상품 이름,주문갯수, 주문한 금액(갯수*갯수당 가격)
     const  { id, quantity  } = props.order
     const productname = props.order.product.name
     const price = props.order.product.price*quantity

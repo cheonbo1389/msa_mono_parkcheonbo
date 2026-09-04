@@ -5,8 +5,6 @@ import { Card } from 'react-bootstrap';
 
 const Mypage = () => {
     const token = localStorage.getItem("Token");
-    console.log(token);
-
     const navigate = useNavigate();
 
     const [myinfo, setMyinfo] = useState({
@@ -25,7 +23,6 @@ const Mypage = () => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setMyinfo(res); 
         });
     }, [])

@@ -22,8 +22,7 @@ const JoinForm = (props) => {
 
     const submitRegister = (e) =>{
         e.preventDefault();
-        console.log(user);
-        
+
         fetch("http://localhost:8081/member/create",
         { 
           method : "POST",
@@ -33,7 +32,6 @@ const JoinForm = (props) => {
           body: JSON.stringify(user)
         })
         .then((res) => {
-            console.log(1, res);
             if(res.status === 201){
                 return res.json();
             }else{
@@ -41,11 +39,11 @@ const JoinForm = (props) => {
             }   
         })
         .then((res) => {
-            console.log("정상",res);
             if(res != null){
-                navigate('/home');
+              alert("회원가입에 성공했습니다.");
+              navigate('/home');
             }else{
-                alert("회원가입에 실패했습니다.");
+              alert("회원가입에 실패했습니다.");
             }
         })
         .catch((error) => {

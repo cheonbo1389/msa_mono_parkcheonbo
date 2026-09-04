@@ -25,7 +25,7 @@ public class ProductService {
         this.memberRepository = memberRepository;
     }
 
-    //제품 등록 + 수정
+    //제품 등록
     public Product productCreate(ProductRegisterDto dto){
         System.out.println("<<< ProductService - productCreate >>>");
 

@@ -5,8 +5,7 @@ import MyProductItem from '../../components/MyProductItem';
 
 const MyProductList = () => {
     const token = localStorage.getItem("Token");
-    console.log(token);
-    
+
     const [productList, setProductList] = useState([]);
 
     useEffect(() => {
@@ -19,7 +18,6 @@ const MyProductList = () => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setProductList(res); 
         });
     }, [])

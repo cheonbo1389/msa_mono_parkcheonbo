@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Button, Container, Form, Card} from 'react-bootstrap';
+import { Button, Container, Form} from 'react-bootstrap';
 import {  useNavigate, useParams } from 'react-router-dom';
 
 
@@ -11,9 +11,6 @@ const ProductUpdate = (props) => {
     const token = localStorage.getItem("Token");
     const id = propsParam.id;
     const [product, setProduct] = useState({
-        // name: '',
-        // price: '',
-        // stockQuantity: ''
     });
 
 
@@ -27,7 +24,6 @@ const ProductUpdate = (props) => {
         }) 
         .then(res => res.json())
         .then(res => {
-            console.log(1,res);
             setProduct(res);             
         });
     }, [])
@@ -53,7 +49,6 @@ const ProductUpdate = (props) => {
             body: JSON.stringify(product) 
         })
         .then((res) => { 
-            console.log(1, res);
             if(res.status === 200){
                 return res.json();
             }else{
@@ -62,7 +57,6 @@ const ProductUpdate = (props) => {
             
         })
         .then((res) => {
-            console.log("정상",res);
             if(res != null){
                 alert("제품 수정에 성공했습니다.");
                 navigate("/product/"+id); 
@@ -78,14 +72,6 @@ const ProductUpdate = (props) => {
 
     return (
         <div>
-            {/* <Card>
-                <Card.Body>               
-                    <Card.Title>제품번호 : {id}</Card.Title>
-                    <Card.Title>제품명 : {product.name}</Card.Title>
-                    <Card.Title>제품가격 : {product.price}</Card.Title>
-                    <Card.Title>제품재고 : {product.stockQuantity}</Card.Title>
-                </Card.Body>
-            </Card> */}
             <Container>
                 <br />
                 <h3>제품 수정</h3>

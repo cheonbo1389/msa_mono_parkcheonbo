@@ -20,7 +20,6 @@ const Logout = () => {
             })
         })
         .then((res) => {
-            console.log(1, res);
             if(res.status === 200){ 
                 //토큰 삭제
                 localStorage.removeItem("Token");

@@ -22,7 +22,6 @@ const LoginForm = (props) => {
 
     const submitLogin = (e) =>{
         e.preventDefault();
-        console.log(user);
         
         fetch("http://localhost:8081/member/doLogin",
         { 
@@ -33,7 +32,6 @@ const LoginForm = (props) => {
           body: JSON.stringify(user)
         })
         .then((res) => {
-            console.log(1, res);
             if(res.status === 200){
                 return res.json();
             }else{
@@ -41,7 +39,6 @@ const LoginForm = (props) => {
             }   
         })
         .then((res) => {
-            console.log("정상",res);
             if (res != null && res.token) {
               // 토큰 저장
               localStorage.setItem("Token", res.token);
