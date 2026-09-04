@@ -5,7 +5,11 @@ import com.example.msa_monolithic.member.domain.Member;
 import com.example.msa_monolithic.member.dto.LoginDto;
 import com.example.msa_monolithic.member.dto.MemberSaveReqDto;
 import com.example.msa_monolithic.member.repository.MemberRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -64,7 +68,6 @@ public class MemberService {
         }
         return optionalMember.get();
     }
-
 
     //마이페이지 - 내정보 조회
     public Member myinfo(){

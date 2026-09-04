@@ -1,7 +1,6 @@
 import { Button, Form, Container} from 'react-bootstrap';
 import { React, useState, useEffect} from 'react';
 import {  useNavigate } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
 
 
 const UpdateMyinfo = () => {
@@ -10,10 +9,7 @@ const UpdateMyinfo = () => {
 
     const navigate = useNavigate();
 
-    const [myinfo, setMyinfo] = useState({
-            // name : '',
-            // email : ''
-        })
+    const [myinfo, setMyinfo] = useState({});
 
 
     useEffect(() => {

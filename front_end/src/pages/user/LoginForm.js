@@ -48,8 +48,7 @@ const LoginForm = (props) => {
 
               // 리프레시 토큰 저장
               localStorage.setItem("refreshToken", res.refreshToken);
-
-               navigate('/home');
+              window.location.href = "/home";
             }else{
                 alert("로그인에 실패했습니다.");
             }
@@ -60,12 +59,9 @@ const LoginForm = (props) => {
         })
     }
 
-
-
     const gotoRegister = () => {
       navigate('/joinForm');
     }
-
 
     return (
       <Container>
@@ -80,7 +76,7 @@ const LoginForm = (props) => {
           <Form.Label>비밀번호</Form.Label>
           <Form.Control type="password" placeholder="비밀번호를 입력해주세요" onChange={changeValue} name="password" />
         </Form.Group>
-        <Button variant="success" type="submit">
+        <Button variant="success" className="me-3" type="submit">
           로그인
         </Button>
       <Button variant="primary" onClick={gotoRegister}>회원가입</Button>  

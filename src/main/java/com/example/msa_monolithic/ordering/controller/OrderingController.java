@@ -18,7 +18,7 @@ public class OrderingController {
         this.orderingService = orderingService;
     }
 
-
+    //주문 추가
     @PostMapping("/create")
     public ResponseEntity<?> orderCreate(@RequestBody OrderCreateDto dtos){
         System.out.println("<<< OrderingController - /create >>>");

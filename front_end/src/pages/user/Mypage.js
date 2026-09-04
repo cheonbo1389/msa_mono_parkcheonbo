@@ -1,4 +1,4 @@
-import { Button, Form, Container} from 'react-bootstrap';
+import { Button, Container} from 'react-bootstrap';
 import { React, useState, useEffect} from 'react';
 import {  useNavigate } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
@@ -12,7 +12,7 @@ const Mypage = () => {
     const [myinfo, setMyinfo] = useState({
             name : '',
             email : ''
-        })
+        });
 
 
     useEffect(() => {

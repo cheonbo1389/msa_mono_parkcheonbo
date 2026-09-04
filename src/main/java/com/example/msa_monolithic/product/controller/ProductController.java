@@ -53,7 +53,7 @@ public class ProductController {
     }
 
 
-    //내가 추가한 제품 조회
+    //유저가 추가한 제품 조회
     @GetMapping("/mylist")
     public ResponseEntity<?> myproductList(){
         System.out.println("<<< ProductController - /mylist >>>");

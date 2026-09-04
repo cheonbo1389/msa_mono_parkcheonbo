@@ -8,6 +8,7 @@ import com.example.msa_monolithic.member.service.JwtTokenProvider;
 import com.example.msa_monolithic.member.service.MemberService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -77,7 +79,7 @@ public class MemberController {
         return new ResponseEntity<>(memberService.myinfo(), HttpStatus.OK);
     }
 
-
+    //유저 정보 수정
     @PutMapping("/updatemyinfo")
     public ResponseEntity<?> updateMyinfo(@RequestBody Member member) {
         System.out.println("<<< MemberController - /updateMyinfo >>>");
@@ -85,6 +87,33 @@ public class MemberController {
         return new ResponseEntity<>(memberService.updatemyinfo(member), HttpStatus.OK);
     }
 
+    //로그아웃
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody MemberRefreshDto token) {
+        System.out.println("<<< MemberController - /logout >>>");
+
+
+        // rt 디코딩 후 email 추출
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(secretKeyRt)
+                .build()
+                .parseClaimsJws(token.getRefreshToken())
+                .getBody();
+
+
+        String email = claims.getSubject();
+
+        //rt를 redis의 rt 비교 검증
+        Object rt = redisTemplate.opsForValue().get(claims.getSubject());
+        if (rt == null || !rt.toString().equals(token.getRefreshToken())){
+            return new ResponseEntity<>((Object) null, HttpStatus.BAD_REQUEST);
+        }
+
+        // Redis에서 Refresh Token 삭제
+        redisTemplate.delete(email);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @PostMapping("/refresh-token")
     public ResponseEntity<?> generateNewAt(@RequestBody MemberRefreshDto dto){

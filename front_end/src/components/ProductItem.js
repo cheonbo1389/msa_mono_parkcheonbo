@@ -7,8 +7,6 @@ const ProductItem = (props) => {
 
     const  { id, name, price, stockQuantity } = props.product
 
-    // 제품 추가자 이름 확인 로그
-    // console.log("제품 : "+props.product.member.name);
     
     return (
         <div>
@@ -18,7 +16,7 @@ const ProductItem = (props) => {
                     <Card.Title>제품명 : {name}</Card.Title>
                     <Card.Title>제품가격 : {price}</Card.Title>
                     {/* <Card.Title>재고 : {stockQuantity}</Card.Title> */}
-                    <Link to={"/product/"+id} className="btn btn-primary">상세보기</Link>
+                    <Link to={"/product/"+id}  className="btn btn-primary me-3">상세보기</Link>
                     <Link to={"/ordercreate/"+id} className="btn btn-primary">주문하기</Link>
                 </Card.Body>
             </Card>

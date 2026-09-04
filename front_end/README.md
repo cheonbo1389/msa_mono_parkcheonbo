@@ -138,7 +138,18 @@ ordering
 - 주문 페이지 수정해야함 -> 완료
 
 
-- 로그인 안되어있으면 로그인 페이지로 넘기기
-- 로그인 안되어있으면 로그아웃 버튼 숨기기
+- 로그인 안되어있으면 로그인 페이지로 넘기기 -> 완료
+- 로그인 안되어있으면 로그아웃 버튼 숨기기 -> 완료
 
-- 로그아웃 기능 -> 더 찾아봐야함
+- 로그아웃 기능 -> 완료
+
+
+헤더 부분 수정
+    const [token, setToken] = React.useState(
+        localStorage.getItem("Token")
+    );
+
+    const handleLogout = () => {
+        localStorage.removeItem("Token");
+        setToken(null);
+    };

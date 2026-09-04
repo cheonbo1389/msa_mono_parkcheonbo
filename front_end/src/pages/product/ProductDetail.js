@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Button, Card, Container} from 'react-bootstrap';
 import { useNavigate,useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 
 const ProductDetail = () => {
@@ -53,7 +52,7 @@ const ProductDetail = () => {
                         <Card.Title>제품가격 : {productList.price}</Card.Title>
                         <Card.Title>제품재고 : {productList.stockQuantity}</Card.Title>
                         <Card.Title>판매자 : {member.name}</Card.Title>
-                        <Button variant="warning" onClick={backpage}>이전페이지로</Button>
+                        <Button variant="warning" className="me-3" onClick={backpage}>이전페이지로</Button>
                         <Button variant="primary" onClick={createOrder}>주문하기</Button>
 
                     </Card.Body>

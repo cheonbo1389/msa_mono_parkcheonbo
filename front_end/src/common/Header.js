@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 
 const Header = () => {
+    const token = localStorage.getItem("Token");
+        
     return (
         <div>
         <Navbar bg="dark" variant="dark">
@@ -33,9 +35,12 @@ const Header = () => {
                 </NavDropdown>
             </Nav>
             <Form className="d-flex">
-                <Button variant="outline-success" href="/loginForm">로그인</Button>
-                <Button variant="outline-primary" href="/joinForm">회원가입</Button>
-                {/* <Button variant="outline-warning">로그아웃</Button> */}
+                {!token && (<>
+                    <Button variant="outline-success" className="me-3" href="/loginForm">로그인</Button>
+                    <Button variant="outline-primary" href="/joinForm">회원가입</Button>
+                </>)}
+                {token && (<><Button variant="outline-warning" href="/logout">로그아웃</Button></>)}
+                
             </Form>
             </Navbar.Collapse>
         </Container>
